@@ -32,15 +32,15 @@ def send_request(messages):
     message = response.choices[0].message['content']
     return message.strip()
 
-def load_chat_history(chatname):
-    filename = f"{chatname}_hist.txt"
+def load_chat_history(chatname, path_hist=PATH_HIST_FOLDER):
+    filename = f"{path_hist}/{chatname}.txt"
     if os.path.exists(filename):
         with open(filename, "r") as file:
             return json.loads(file.read())
     return []
 
-def save_chat_history(chatname, messages):
-    filename = f"{chatname}_hist.txt"
+def save_chat_history(chatname, messages, path_hist=PATH_HIST_FOLDER):
+    filename = f"{path_hist}/{chatname}.txt"
     with open(filename, "w") as file:
         file.write(json.dumps(messages))
 
